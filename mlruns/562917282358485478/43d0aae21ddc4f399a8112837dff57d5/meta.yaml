@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/saisu/OneDrive/Desktop/fraudradar/mlruns/562917282358485478/43d0aae21ddc4f399a8112837dff57d5/artifacts
+end_time: 1750425812690
+entry_point_name: ''
+experiment_id: '562917282358485478'
+lifecycle_stage: active
+run_id: 43d0aae21ddc4f399a8112837dff57d5
+run_name: classy-loon-49
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750425714348
+status: 3
+tags: []
+user_id: saisu

@@ -1,0 +1,9 @@
+data_path: "data/creditcard.csv"
+model_dir: "models"
+test_size: 0.2
+random_state: 42
+smote:
+  random_state: 42
+model:
+  n_estimators: 100
+  random_state: 42

@@ -1,0 +1,11 @@
+fastapi
+streamlit
+mlflow
+scikit-learn
+imbalanced-learn
+uvicorn
+joblib
+pydantic
+numpy
+pandas
+requests
