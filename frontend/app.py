@@ -1,10 +1,11 @@
 import streamlit as st
 import requests
 
+st.set_page_config(page_title="FraudRadar", page_icon="💳")
 st.title("💳 FraudRadar: Real-Time Fraud Detection")
+st.markdown("Enter transaction details below to detect potential fraud:")
 
-st.markdown("Enter transaction features:")
-
+# Feature names (29 features expected by your backend model)
 feature_names = [
     "Transaction Time",
     "Transaction Amount",
@@ -37,19 +38,22 @@ feature_names = [
     "Transaction Amount (in USD)"
 ]
 
-features = []
+# Input fields
+features = [st.number_input(name, value=0.0) for name in feature_names]
 
-for name in feature_names:
-    val = st.number_input(name, value=0.0)
-    features.append(val)
+# Use your actual deployed backend here 👇
+API_URL = "https://fraudradar.onrender.com/predict"
 
+# Submit to FastAPI
 if st.button("Predict"):
-    with st.spinner("Predicting..."):
-        payload = {"features": features}
+    with st.spinner("Sending data to FraudRadar backend..."):
         try:
-            res = requests.post("http://localhost:8000/predict", json=payload)
-            result = res.json()
-            st.success(f"Prediction: {result['prediction']}")
-            st.info(f"Fraud Probability: {result['probability']}")
+            res = requests.post(API_URL, json={"features": features})
+            if res.status_code == 200:
+                result = res.json()
+                st.success(f"✅ Prediction: {result['prediction']}")
+                st.info(f"🔍 Fraud Probability: {result['probability']:.2%}")
+            else:
+                st.error(f"❌ API Error {res.status_code}: {res.text}")
         except Exception as e:
-            st.error(f"Error connecting to API: {e}")
+            st.error(f"🚫 Connection Error: {e}")
